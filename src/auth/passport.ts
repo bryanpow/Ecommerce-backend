@@ -10,7 +10,8 @@ export const hashPassword = async (password: string, saltRounds: number) => {
     try {
         const salt = await bcrypt.genSalt(saltRounds);
         return await bcrypt.hash(password, salt)
-    } catch (err) {
+    }
+    catch (err) {
         if (err instanceof Error) {
             console.warn(err.message)
         }
@@ -20,7 +21,8 @@ export const comparePasswords = async(password: string, hash: string) => {
     try {
         const matchFound = await bcrypt.compare(password, hash);
         return matchFound
-    } catch(err) {
+    } 
+    catch(err) {
         if (err instanceof Error) {
             console.warn(err.message)
         }
@@ -52,7 +54,8 @@ passport.deserializeUser(async (id: number, done) => {
         const user = await findUserById(id);
         if (!user) return done(null, null)
         else return done(null, user)
-    } catch(err) {
+    } 
+    catch(err) {
         if (err instanceof Error) {
             console.warn(err.message)
         }
