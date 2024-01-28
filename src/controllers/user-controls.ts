@@ -13,7 +13,8 @@ export const registerUser = async (name: string, email: string, password: string
         }
         const newUser = await prisma.user.create({ data: userData })
         return newUser
-    } catch(err) {
+    } 
+    catch(err) {
         if (err instanceof Error) {
             console.warn(err)
         }
@@ -25,7 +26,8 @@ export const findUserById = async (id : number) => {
         const user = await prisma.user.findUnique({where: {id: id}});
         if (!user) return null
         else return user
-    } catch(err) {
+    } 
+    catch(err) {
         if (err instanceof Error) {
             console.warn(err.message)
         }
